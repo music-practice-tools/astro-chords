@@ -1,5 +1,9 @@
 ---
-const {title, links} = Astro.props
+export interface Props {
+  links: {text: string, url: string}[]
+}
+
+const {links} = Astro.props as Props;
 ---
 
 <nav>
@@ -15,7 +19,7 @@ ul {
     list-style: none; 
 }
 
-ul {     
+ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
     }
