@@ -1,0 +1,74 @@
+---
+---
+
+<script>
+  import { node, click$ } from '@lib/drivers/dom'
+  import { forEach, fromIter, map, share } from 'callbag-basics-esmodules'
+  import sample from 'callbag-sample'
+  import sampleWhen from 'callbag-sample-when'
+
+  import Chord from '@tonaljs/chord'
+
+  import Collection from '@tonaljs/collection'
+
+  function* randomIter(array) {
+    while (true) {
+      const random = Collection.shuffle(array)
+      for (const tonic of random) {
+        yield tonic
+      }
+    }
+  }
+
+  function randmisedArray$(array) {
+    return fromIter(randomIter(array))
+  }
+
+  const tonics = [
+    'C',
+    'Db',
+    'D',
+    'Eb',
+    'E',
+    'F',
+    'Gb',
+    'G',
+    'Ab',
+    'A',
+    'B',
+    'Bb',
+  ]
+
+  // Questions
+  const ask$ = click$('#ask')
+  const tonicP$ = randmisedArray$(tonics)
+  const tonicQ$ = share(sample(tonicP$)(ask$))
+  forEach((tonic) => {
+    node('#chord-to-spell').textContent = tonic
+    node('#answer').textContent = ''
+  })(tonicQ$)
+
+  // Answers
+  const show$ = click$('#show')
+  const notes$ = map((symbol) => Chord.get(symbol).notes)(tonicQ$)
+  const notesShown$ = share(sampleWhen(show$)(notes$))
+  forEach((notes) => {
+    node('#answer').textContent = `${notes.join(' ')}`
+  })(notesShown$)
+</script>
+
+<fieldset id="question">
+  <legend>Chord to Spell</legend>
+  <button id="ask">Ask</button>
+  <!-- svelte-ignore a11y-label-has-associated-control -->
+  <label>
+    Tonic:
+    <span id="chord-to-spell"></span>
+  </label>
+  <button id="show">Show</button>
+  <span id="answer"></span>
+</fieldset>
+
+<style>
+
+</style>

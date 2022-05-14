@@ -1,0 +1,25 @@
+---
+const {title, links} = Astro.props
+---
+
+<nav>
+    <ul>
+        {links.map(({text, url}) => (
+            <li><a href={url}>{text}</a></li>
+        ))}
+    </ul>
+</nav>
+
+<style>
+ul {
+    list-style: none; 
+}
+
+ul {     
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    }
+
+nav > * {
+}
+</style>

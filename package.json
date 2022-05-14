@@ -1,0 +1,23 @@
+{
+  "name": "astro-chords",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "npx prettier -w ."
+  },
+  "devDependencies": {
+    "astro": "1.0.0-beta.27",
+    "prettier-plugin-astro": "^0.0.12"
+  },
+  "dependencies": {
+    "@tonaljs/tonal": "^4.6.5",
+    "callbag-basics-esmodules": "^4.0.0",
+    "callbag-sample": "^2.1.0",
+    "callbag-sample-when": "^1.0.0",
+    "callbag-start-with": "^3.1.0"
+  }
+}
