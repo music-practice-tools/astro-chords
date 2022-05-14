@@ -59,19 +59,21 @@
 
 <fieldset id="question">
   <legend>Chord to Spell</legend>
-  <div>
-    <button id="ask">Next Test:</button>
-    <span id="chord-to-spell"></span>
-  </div>
-  <div>
-    <button id="show">Show Spelling</button>
-    <span id="answer"></span>
-  </div>
+  <button id="ask">Next Test:</button>
+  <span id="chord-to-spell"></span>
+  <button id="show">Show Spelling</button>
+  <span id="answer"></span>
 </fieldset>
 
 <style>
   fieldset {
     display: grid;
-    grid-template-rows: repeat(auto-fit, minmax(10px, 1fr));
+    grid-template-columns: 1fr 8fr;
+    grid-template-rows: repeat(auto-fit, minmax(20px, 1fr));
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+  button {
+    font-size: var(--font-size-large);
   }
 </style>
