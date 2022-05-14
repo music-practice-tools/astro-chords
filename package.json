@@ -11,13 +11,13 @@
   },
   "devDependencies": {
     "astro": "1.0.0-beta.27",
-    "prettier-plugin-astro": "^0.0.12"
+    "prettier-plugin-astro": "0.0.12"
   },
   "dependencies": {
-    "@tonaljs/tonal": "^4.6.5",
-    "callbag-basics-esmodules": "^4.0.0",
-    "callbag-sample": "^2.1.0",
-    "callbag-sample-when": "^1.0.0",
-    "callbag-start-with": "^3.1.0"
+    "@tonaljs/tonal": "4.6.5",
+    "callbag-basics-esmodules": "4.0.0",
+    "callbag-sample": "2.1.0",
+    "callbag-sample-when": "1.0.0",
+    "callbag-start-with": "3.1.0"
   }
 }
