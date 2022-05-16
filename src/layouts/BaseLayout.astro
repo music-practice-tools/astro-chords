@@ -22,7 +22,7 @@ interface MDProps {
 
 const { content } = Astro.props as MDProps
 const props = (content as AstroProps) ?? (Astro.props as AstroProps)
-const { title } = props as AstroProps
+const { title } = props
 
 ---
 

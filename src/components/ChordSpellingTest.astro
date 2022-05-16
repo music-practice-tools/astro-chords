@@ -20,7 +20,7 @@
     }
   }
 
-  function randmisedArray$(array) {
+  function fromRandomisedArray(array) {
     return fromIter(randomIter(array))
   }
 
@@ -41,12 +41,12 @@
 
   // Questions
   const ask$ = click$('#ask')
-  const tonicP$ = randmisedArray$(tonics)
-  const tonicQ$ = share(sample(tonicP$)(ask$))
+  const tonicP$ = fromRandmisedArray(tonics)
+  const tonicL$ = share(sample(tonicP$)(ask$))
   forEach((tonic) => {
     node('#chord-to-spell').textContent = tonic
     node('#answer').textContent = ''
-  })(tonicQ$)
+  })(tonicL$)
 
   // Answers
   const show$ = click$('#show')
@@ -59,7 +59,7 @@
 
 <fieldset id="question">
   <legend>Chord to Spell</legend>
-  <button id="ask">Next Test:</button>
+  <button id="ask">Next Chord:</button>
   <span id="chord-to-spell"></span>
   <button id="show">Show Spelling</button>
   <span id="answer"></span>
