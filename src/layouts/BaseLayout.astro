@@ -1,18 +1,29 @@
 ---
-export interface Props {
-  title: string
-}
-
+export type Props = AstroProps | MDProps
 import SiteNavigation, {
   Props as SiteNavProps,
 } from '@components/SiteNavigation.astro'
 
-const { title } = Astro.props as Props
 const navLinks: SiteNavProps['links'] = [
   { text: 'Home', url: '/' },
   { text: 'Spelling', url: '/spelling' },
   { text: 'Reference', url: '/reference' },
 ]
+
+// NB compiler barfs if these occur before exports and imports!
+interface AstroProps {
+  title: string
+}
+interface MDProps {
+  content: AstroProps
+  astro: any
+  url: string
+}
+
+const { content } = Astro.props as MDProps
+const props = (content as AstroProps) ?? (Astro.props as AstroProps)
+const { title } = props as AstroProps
+
 ---
 
 <!DOCTYPE html>
