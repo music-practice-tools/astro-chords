@@ -4,3 +4,8 @@
 
 [functions]
   external_node_modules = ["astro"]
+
+[dev]
+  command = "npm run dev"
+  framework = "astro"
+  targetPort = 3000
