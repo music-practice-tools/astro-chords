@@ -1,0 +1,87 @@
+---
+//const cookie = Astro.request.headers.get('cookie')
+
+/*
+return new Response(null, {
+  status: 404,
+  statusText: 'Not found',
+})
+*/
+---
+
+<script>
+  import { node, click$ } from '@lib/drivers/dom'
+  import { forEach, fromIter, map, share } from 'callbag-basics-esmodules'
+  import sample from 'callbag-sample'
+  import sampleWhen from 'callbag-sample-when'
+
+  import Chord from '@tonaljs/chord'
+
+  import Collection from '@tonaljs/collection'
+
+  function* randomIter(array) {
+    while (true) {
+      const random = Collection.shuffle(array)
+      for (const tonic of random) {
+        yield tonic
+      }
+    }
+  }
+
+  function fromRandomisedArray(array) {
+    return fromIter(randomIter(array))
+  }
+
+  const tonics = [
+    'C',
+    'Db',
+    'D',
+    'Eb',
+    'E',
+    'F',
+    'Gb',
+    'G',
+    'Ab',
+    'A',
+    'B',
+    'Bb',
+  ]
+
+  // Questions
+  const ask$ = click$('#ask')
+  const tonicP$ = fromRandmisedArray(tonics)
+  const tonicL$ = share(sample(tonicP$)(ask$))
+  forEach((tonic) => {
+    node('#chord-to-spell').textContent = tonic
+    node('#answer').textContent = ''
+  })(tonicL$)
+
+  // Answers
+  const show$ = click$('#show')
+  const notes$ = map((symbol) => Chord.get(symbol).notes)(tonicQ$)
+  const notesShown$ = share(sampleWhen(show$)(notes$))
+  forEach((notes) => {
+    node('#answer').textContent = `${notes.join(' ')}`
+  })(notesShown$)
+</script>
+
+<fieldset id="question">
+  <legend>Chord to Spell</legend>
+  <button id="ask">Next Chord:</button>
+  <span id="chord-to-spell"></span>
+  <button id="show">Show Spelling</button>
+  <span id="answer"></span>
+</fieldset>
+
+<style>
+  fieldset {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    grid-template-rows: repeat(auto-fit, minmax(20px, 1fr));
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+  button {
+    font-size: var(--font-size-large);
+  }
+</style>
