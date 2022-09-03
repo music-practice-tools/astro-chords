@@ -2,10 +2,8 @@
   command = "npm run build"
   publish = "dist"
 
-[functions]
-  external_node_modules = ["astro"]
-
 [dev]
   command = "npm run dev"
+  publish = "dist"
   framework = "astro"
   targetPort = 3000
