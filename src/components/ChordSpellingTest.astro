@@ -44,7 +44,6 @@
   const tonicP$ = fromRandmisedArray(tonics)
   const tonicL$ = share(sample(tonicP$)(ask$))
   forEach((tonic) => {
-    alert(tonic)
     node('#chord-to-spell').textContent = tonic
     node('#answer').textContent = ''
   })(tonicL$)
